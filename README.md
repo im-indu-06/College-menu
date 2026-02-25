@@ -1,257 +1,103 @@
+Sure 👍 I will explain your program **without showing code lines**, only in explanation format.
+
 ---
 
 # 📌 In-Depth Explanation – College Canteen Billing System
 
-## 🔹 1️⃣ Program Purpose
-
-This program is a **menu-driven billing system** for a college canteen.
-It allows the user to:
-
-* Select a food category
-* Choose food items
-* Enter quantity
-* Order multiple items
-* Generate a detailed bill receipt
-
-It simulates a real-world billing system.
+This program is a **menu-driven billing system** designed for a college canteen. It allows users to select different food categories, choose items, enter quantities, and generate a detailed bill receipt at the end.
 
 ---
 
-# 🔹 2️⃣ Import Statement
+## 🔹 How the Program Works
 
-```java
-import java.util.*;
-```
+### 1️⃣ User Input Setup
 
-This imports:
-
-* `Scanner` → for user input
-* `ArrayList` → to store ordered items dynamically
+The program first creates a scanner object to take input from the user. It also initializes a variable to store the total bill amount and a boolean variable to control the ordering process.
 
 ---
 
-# 🔹 3️⃣ Main Method
+### 2️⃣ Storing Order Details
 
-```java
-public static void main(String[] args)
-```
+Three dynamic lists (ArrayLists) are used:
 
-Execution of the program starts here.
+* One to store the names of ordered items
+* One to store the quantities
+* One to store the total price of each item
 
----
-
-# 🔹 4️⃣ Variable Declaration
-
-```java
-Scanner sc = new Scanner(System.in);
-double totalBill = 0;
-boolean continueOrder = true;
-```
-
-* `sc` → Reads user input
-* `totalBill` → Stores total amount of all items
-* `continueOrder` → Controls loop for multiple orders
+These lists help in generating a detailed receipt at the end.
 
 ---
 
-# 🔹 5️⃣ ArrayLists for Storing Orders
+### 3️⃣ Main Menu Display
 
-```java
-ArrayList<String> orderedItems = new ArrayList<>();
-ArrayList<Integer> orderedQty = new ArrayList<>();
-ArrayList<Double> orderedPrice = new ArrayList<>();
-```
+The program continuously displays five main categories:
 
-These store:
+* Tiffins
+* Lunch
+* Snacks
+* Beverages
+* Bakery Items
 
-* Food names
-* Quantities
-* Total price per item
-
-Why ArrayList?
-Because the number of ordered items is not fixed. It can grow dynamically.
+The user selects a category by entering a number.
 
 ---
 
-# 🔹 6️⃣ While Loop (Main Ordering Loop)
+### 4️⃣ Item Selection
 
-```java
-while (continueOrder)
-```
+After selecting a category, the program displays all items available in that category along with their prices.
 
-This loop runs until the user chooses to stop ordering.
+The user then:
 
----
-
-# 🔹 7️⃣ Display Main Menu
-
-The program shows 5 categories:
-
-1. Tiffins
-2. Lunch
-3. Snacks
-4. Beverages
-5. Bakery Items
-6. Exit
-
-User selects category using `mainChoice`.
+* Selects an item
+* Enters the quantity
 
 ---
 
-# 🔹 8️⃣ Arrays for Items and Prices
+### 5️⃣ Bill Calculation
 
-```java
-String[] items = {};
-double[] prices = {};
-```
+The program calculates the total price of the selected item by multiplying its price with the quantity entered.
 
-Inside each `switch case`, the program assigns:
+This amount is:
 
-* Item names
-* Corresponding prices
-
-Example:
-
-```java
-items = new String[]{"Idly","Dosa","Vada"...};
-prices = new double[]{30,40,25...};
-```
-
-Index positions match:
-
-* `items[0]` → price `prices[0]`
+* Added to the overall total bill
+* Stored in the order lists
 
 ---
 
-# 🔹 9️⃣ Display Items in Selected Category
+### 6️⃣ Multiple Orders
 
-```java
-for (int i = 0; i < items.length; i++)
-```
-
-Loop prints all items with price.
+The program asks the user whether they want to continue ordering.
+If the user chooses yes, the menu appears again.
+If no, the ordering process stops.
 
 ---
 
-# 🔹 1️⃣0️⃣ Item Selection & Quantity
+### 7️⃣ Bill Receipt Generation
 
-```java
-int itemChoice = sc.nextInt();
-int quantity = sc.nextInt();
-```
-
-User selects:
-
-* Item number
-* Quantity
-
----
-
-# 🔹 1️⃣1️⃣ Bill Calculation
-
-```java
-String selectedItem = items[itemChoice - 1];
-double itemPrice = prices[itemChoice - 1];
-double itemTotal = itemPrice * quantity;
-```
-
-* `itemChoice - 1` → because arrays start at index 0
-* Total price = price × quantity
-
-Then:
-
-```java
-totalBill += itemTotal;
-```
-
-Adds to grand total.
-
----
-
-# 🔹 1️⃣2️⃣ Store Order Details
-
-```java
-orderedItems.add(selectedItem);
-orderedQty.add(quantity);
-orderedPrice.add(itemTotal);
-```
-
-This ensures:
-
-* All ordered items are saved
-* Receipt can be printed later
-
----
-
-# 🔹 1️⃣3️⃣ Continue Ordering
-
-```java
-continueOrder = sc.nextBoolean();
-```
-
-If user enters:
-
-* `true` → continue
-* `false` → stop ordering
-
----
-
-# 🔹 1️⃣4️⃣ Bill Receipt Section
-
-After loop ends:
-
-```java
-System.out.printf("%-20s %-10s %-10s\n", "Item", "Qty", "Amount");
-```
-
-Formatted output:
-
-* Left-aligned columns
-* Professional bill format
-
-Then loop prints:
+After ordering is completed, the program prints a detailed bill that includes:
 
 * Item name
 * Quantity
-* Total price per item
+* Total amount per item
+* Final total bill amount
 
-Finally prints:
-
-```java
-System.out.println("Total Amount: ₹" + totalBill);
-```
+The receipt is formatted neatly in columns for professional appearance.
 
 ---
 
-# 🔹 1️⃣5️⃣ Closing Scanner
+## 🔹 Concepts Used
 
-```java
-sc.close();
-```
-
-Closes input stream (good practice).
-
----
-
-# 🎯 Concepts Used in This Program
-
-✔ Arrays
-✔ ArrayList
-✔ Switch-case
-✔ While loop
-✔ For loop
-✔ Conditional statements
-✔ Arithmetic operations
-✔ Formatted printing (`printf`)
-✔ User input handling
+* Arrays (for storing menu items and prices)
+* ArrayList (for dynamic storage of ordered items)
+* Loops (for repeated ordering)
+* Switch-case (for category selection)
+* Arithmetic operations (for bill calculation)
+* Formatted output (for receipt printing)
 
 ---
 
-# 💡 Strength of This Program
+## 🎯 Overall Conclusion
 
-* Dynamic ordering
-* Clean billing structure
-* Real-world application
-* Easy to upgrade (GST, discount, invoice number)
+This program simulates a real-world canteen billing system. It demonstrates how Java can be used to build practical applications using core programming concepts such as arrays, collections, loops, and user input handling.
 
----
+It is a strong mini-project that shows understanding of both logic building and structured programming.
