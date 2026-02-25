@@ -1,0 +1,113 @@
+import java.util.*;
+
+public class CollegeCanteen {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        double totalBill = 0;
+        boolean continueOrder = true;
+
+        
+        ArrayList<String> orderedItems = new ArrayList<>();
+        ArrayList<Integer> orderedQty = new ArrayList<>();
+        ArrayList<Double> orderedPrice = new ArrayList<>();
+
+        while (continueOrder) {
+
+            System.out.println("\n====== COLLEGE CANTEEN MENU ======");
+            System.out.println("1. Tiffins");
+            System.out.println("2. Lunch");
+            System.out.println("3. Snacks");
+            System.out.println("4. Beverages");
+            System.out.println("5. Bakery Items");
+            System.out.println("6. Exit");
+            System.out.print("Select Category: ");
+            int mainChoice = sc.nextInt();
+
+            String[] items = {};
+            double[] prices = {};
+
+            switch (mainChoice) {
+
+                case 1:
+                    items = new String[]{"Idly","Dosa","Vada","Chapathi","Sambar Idly","Upma","Bajji"};
+                    prices = new double[]{30,40,25,35,35,30,20};
+                    break;
+
+                case 2:
+                    items = new String[]{"Fried Rice","Chicken Noodles","Egg Manchurian","Veg Manchurian","Chicken Fried Rice","Chicken Biriyani"};
+                    prices = new double[]{80,100,90,70,120,150};
+                    break;
+
+                case 3:
+                    items = new String[]{"Kurkure","Bingo","Lays","Maggie","Puffs","Pizza","Sandwich","Fried Chicken","Samosa"};
+                    prices = new double[]{20,20,20,50,25,120,60,150,15};
+                    break;
+
+                case 4:
+                    items = new String[]{"Oreo Milkshake","Thickshake","Fruit Juices","Soft Drinks"};
+                    prices = new double[]{80,90,50,40};
+                    break;
+
+                case 5:
+                    items = new String[]{"Pastries","Ice Creams","Chocolates","Biscuits"};
+                    prices = new double[]{60,50,30,20};
+                    break;
+
+                case 6:
+                    continueOrder = false;
+                    continue;
+
+                default:
+                    System.out.println("Invalid Choice!");
+                    continue;
+            }
+
+            System.out.println("\n--- ITEMS ---");
+            for (int i = 0; i < items.length; i++) {
+                System.out.println((i+1) + ". " + items[i] + " - ₹" + prices[i]);
+            }
+
+            System.out.print("Select Item Number: ");
+            int itemChoice = sc.nextInt();
+
+            System.out.print("Enter Quantity: ");
+            int quantity = sc.nextInt();
+
+            String selectedItem = items[itemChoice - 1];
+            double itemPrice = prices[itemChoice - 1];
+            double itemTotal = itemPrice * quantity;
+
+            totalBill += itemTotal;
+
+            orderedItems.add(selectedItem);
+            orderedQty.add(quantity);
+            orderedPrice.add(itemTotal);
+
+            System.out.println("Item Added Successfully!");
+
+            System.out.print("Do you want to order more? (true/false): ");
+            continueOrder = sc.nextBoolean();
+        }
+
+       
+        System.out.println("\n=========== BILL RECEIPT ===========");
+        System.out.printf("%-20s %-10s %-10s\n", "Item", "Qty", "Amount");
+        System.out.println("--------------------------------------");
+
+        for (int i = 0; i < orderedItems.size(); i++) {
+            System.out.printf("%-20s %-10d ₹%-10.2f\n",
+                    orderedItems.get(i),
+                    orderedQty.get(i),
+                    orderedPrice.get(i));
+        }
+
+        System.out.println("--------------------------------------");
+        System.out.println("Total Amount: ₹" + totalBill);
+        System.out.println("Thank You! Visit Again 😊");
+
+        sc.close();
+    }
+}
